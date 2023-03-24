@@ -6,7 +6,6 @@
 */
 
 
-
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -34,8 +33,105 @@
       </div>
     </div>
 */
+function GithubCard(img, name, username, location, Profile, followers, following, bio) {
+  const card = document.createElement('div')
+  const image = document.createElement('img')
+  const cardInfo = document.createElement('div')
+  const h3 = document.createElement('h3')
+  const p1 = document.createElement('p')
+  const p2 = document.createElement('p')
+  const p3 = document.createElement('p')
+  const anchor = document.createElement('a')
+  const p4 = document.createElement('p')
+  const p5 = document.createElement('p')
+  const p6 = document.createElement('p')
+  card.appendChild(image);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(h3)
+  cardInfo.appendChild(p1)
+  cardInfo.appendChild(p2)
+  cardInfo.appendChild(p3)
+  cardInfo.appendChild(anchor)
+  cardInfo.appendChild(p4)
+  cardInfo.appendChild(p5)
+  cardInfo.appendChild(p6)
+
+  image.src = img;
+  h3.textContent = name;
+  p1.textContent = username;
+  p2.textContent = "Location:" + location;
+  anchor.innerHTML = "Profile: " + Profile;
+  p4.textContent = "Followers: " + followers;
+  p5.textContent = "Following: " + following;
+  p6.textContent = "Bio: " + bio;
+
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  h3.classList.add('name')
+  p1.classList.add('username')
+
+  return card
+}
+
+const cards = document.querySelector(".cards")
+axios.get('https://api.github.com/users/abdirahmanahmed1')
+  .then(response => {
+    // const og=response.data;
+    // console.log(og)
+    const photo=response.data.avatar_url;
+    const magc=response.data.login;
+    const username=response.data.name;
+    const location=response.data.location;
+    const Profile=response.data.url;
+    const followers=response.data.followers;
+    const following=response.data.following;
+    const bio=response.data.bio;
+    cards.appendChild(GithubCard(photo,magc,username,location,Profile,followers,following,bio))
+
+  })
+  .catch(error =>{
+    console.log(error)
+  })
 
 
+  axios.get('https://api.github.com/users/BakarMokhtarAli')
+  .then(response => {
+    // const og=response.data;
+    // console.log(og)
+    const photo=response.data.avatar_url;
+    const magc=response.data.login;
+    const username=response.data.name;
+    const location=response.data.location;
+    const Profile=response.data.url;
+    const followers=response.data.followers;
+    const following=response.data.following;
+    const bio=response.data.bio;
+    cards.appendChild(GithubCard(photo,magc,username,location,Profile,followers,following,bio))
+
+  })
+  .catch(error =>{
+    console.log(error)
+  })
+
+
+  axios.get('https://api.github.com/users/Duraanali')
+  .then(response => {
+    // const og=response.data;
+    // console.log(og)
+    const photo=response.data.avatar_url;
+    const magc=response.data.login;
+    const username=response.data.name;
+    const location=response.data.location;
+    const Profile=response.data.url;
+    const followers=response.data.followers;
+    const following=response.data.following;
+    const bio=response.data.bio;
+    cards.appendChild(GithubCard(photo,magc,username,location,Profile,followers,following,bio))
+
+  })
+  .catch(error =>{
+    console.log(error)
+  })
 
 /*
   STEP 4: Pass the data received from Github into your function, and append the returned markup to the DOM as a child of .cards
